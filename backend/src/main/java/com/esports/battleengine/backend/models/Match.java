@@ -5,6 +5,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
@@ -15,18 +17,12 @@ public class Match {
 
     @Id
     private String id;
-
     private String tournamentId;
-
-    private String teamAId;
-    private String teamBId;
-
-    private Integer scoreA;
-    private Integer scoreB;
-
+    private String game;                  // REQUIRED
+    private List<String> teamIds;          // multi-team ready
+    private Map<String, Object> rawResult; // input
+    private Map<String, Integer> finalScore; // output
     private LocalDateTime scheduledAt;
+    private MatchStatus status;                 // SCHEDULED, COMPLETED
 
-    private String winnerTeamId;
-
-    private String status;
 }

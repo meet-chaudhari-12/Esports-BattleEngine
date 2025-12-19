@@ -5,6 +5,7 @@ import com.esports.battleengine.backend.services.MatchService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/matches")
@@ -18,17 +19,18 @@ public class MatchController {
 
     @PostMapping("/schedule")
     public Match schedule(@RequestBody Match match) {
+        match.setGame("BGMI");
         return service.scheduleMatch(match);
     }
 
     @PostMapping("/{id}/result")
     public Match submitResult(
             @PathVariable String id,
-            @RequestParam Integer scoreA,
-            @RequestParam Integer scoreB
+            @RequestBody Map<String, Object> rawData
     ) {
-        return service.submitResult(id, scoreA, scoreB);
+        return service.submitResult(id, rawData);
     }
+
 
     @GetMapping("/tournament/{tournamentId}")
     public List<Match> getByTournament(@PathVariable String tournamentId) {
