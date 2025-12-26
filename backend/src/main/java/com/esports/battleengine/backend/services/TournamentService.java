@@ -1,5 +1,6 @@
 package com.esports.battleengine.backend.services;
 
+import com.esports.battleengine.backend.exceptions.ApiException;
 import com.esports.battleengine.backend.models.Tournament;
 import com.esports.battleengine.backend.repositories.TournamentRepository;
 import org.springframework.stereotype.Service;
@@ -27,4 +28,13 @@ public class TournamentService {
     public Tournament getById(String id) {
         return repository.findById(id).orElse(null);
     }
+
+    public Tournament lockTournament(String tournamentId) {
+        Tournament tournament = repository.findById(tournamentId)
+                .orElseThrow(() -> new ApiException("Tournament not found"));
+
+        tournament.setLocked(true);
+        return repository.save(tournament);
+    }
+
 }

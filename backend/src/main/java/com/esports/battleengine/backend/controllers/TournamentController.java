@@ -30,4 +30,10 @@ public class TournamentController {
     public Tournament getById(@PathVariable String id) {
         return service.getById(id);
     }
+
+    @PostMapping("/{id}/lock")
+    public Tournament lockTournament(@PathVariable String id) {
+        return service.lockTournament(id);
+    }
+
 }

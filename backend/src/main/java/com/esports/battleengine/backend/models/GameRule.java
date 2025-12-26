@@ -26,7 +26,7 @@ public class GameRule {
     private Integer teamsPerMatch;
 
     // PLACEMENT, KILL, ROUND, POINTS
-    private String scoringType;
+    private ScoringType scoringType;
 
     // Flexible config:
     // { "killPoint": 1, "placementPoints": { "1": 15, "2": 12 } }

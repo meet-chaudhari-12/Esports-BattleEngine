@@ -32,4 +32,6 @@ public class Tournament {
     private LocalDateTime startDate;
 
     private String status;
+
+    private Boolean locked;
 }
